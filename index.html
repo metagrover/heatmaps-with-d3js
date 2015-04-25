@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="houshing">
+<html ng-app="housing">
 <head lang="en">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="static/css/styles.css">
@@ -9,9 +9,17 @@
     <script src="static/js/lodash.min.js"></script>
     <script src="static/js/angular-google-maps.min.js"></script>
     <script src="app.js"></script>
-    <title></title>
+    <title>Housing App</title>
 </head>
-<body>
-<div ui-view="index"></div>
+<body ng-controller="baseController">
+	<select name="location" ng-init="location.id=0" ng-model="location.id" ng-change="resetMap()">
+		<option value="0" selected>New Delhi</option>
+		<option value="1">Bangalore</option>
+		<option value="2">Hyderabad</option>
+	</select>
+	<div>{{location.name}}</div>
+	<div>
+	    <ui-gmap-google-map center='map.center' options="map.options" zoom='map.zoom'></ui-gmap-google-map>
+	</div>
 </body>
 </html>

@@ -1,24 +1,24 @@
-angular.module('houshing', ['ui.router', 'uiGmapgoogle-maps']);
-angular.module('houshing').config(['uiGmapGoogleMapApiProvider',function(uiGmapGoogleMapApiProvider){
+var app = angular.module('housing', ['ui.router', 'uiGmapgoogle-maps']);
+app.config(['uiGmapGoogleMapApiProvider',function(uiGmapGoogleMapApiProvider){
     uiGmapGoogleMapApiProvider.configure({
         india: true
     });
 }]);
-angular.module('houshing').config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
-    $urlRouterProvider.otherwise("/home");
-    $stateProvider
-        .state('home', {
-            url: "/home",
-            views: {
-                index: {
-                    templateUrl: "partials/home.html",
-                    controller: "BaseController as baseCtrl"
-                }
-            }
-        })
-}]);
-angular.module('houshing').controller('BaseController', [ function () {
-    var baseCtrl = this;
-    baseCtrl.testing = "Hello";
-    baseCtrl.map = { center: {latitude: 45, longitude: -73 } , zoom: 8 };
+
+var data = [{lat: 28.6139, lon: 77.2090},
+    {lat: 12.9667, lon: 77.5667},
+    {lat: 17.3700, lon: 78.4800}];
+    
+app.controller('baseController', ['$scope', function ($scope) {
+    $scope.location = {};
+    $scope.map = { center: {latitude: 28.6139, longitude:77.2090 } , 
+                     zoom: 8,
+                     options: { scrollwheel: false,
+                        disableDefaultUI: true } 
+                };
+    $scope.resetMap = function(){
+        var name = $scope.location.id;
+        $scope.map = { center: {latitude: data[name].lat, longitude: data[name].lon }
+                  };
+    }
 }]);
