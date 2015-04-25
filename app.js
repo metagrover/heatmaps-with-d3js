@@ -1,7 +1,12 @@
 var app = angular.module('housing', ['ui.router', 'ngMap']);
     
 app.controller('baseController', ['$scope', function ($scope) {
-            d3.json("bangalore_pincode.json",function(geoJson){
+            d3.json("bangalore_pincode779.json",function(geoJson){
+
+
+            var color = d3.scale.linear()
+					 	.domain([2000,5000])
+					 	.range([ "yellow","red"]);
             var overlay = new google.maps.OverlayView();
             overlay.onAdd = function () {
 
@@ -29,7 +34,8 @@ app.controller('baseController', ['$scope', function ($scope) {
                         // .attr("stroke",function(){return "black";})
                         // .attr("fill",function(d,i){return  "rgb(" + (Math.floor((Math.random() * 255) + 1)) + "," +(Math.floor((Math.random() * 255) + 1))+"," +0+")";})
                         // .attr("fill", function(d,i){ ; return d.properties.PI})
-                        .attr("class", function(d) { return "q"+Math.floor((Math.random() * 9) + 0); })
+                        // .attr("class", function(d) { return "q"+Math.floor((Math.random() * 9) + 0); })
+                        .attr("fill", function(d,i){console.log(d.properties.Prices,i); return color(d.properties.Prices);})
                 };
 
             };
