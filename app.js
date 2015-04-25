@@ -26,9 +26,10 @@ app.controller('baseController', ['$scope', function ($scope) {
                         .attr("d", path) // update existing paths
                     .enter().append("svg:path")
                         .attr("d", path)
-                        .attr("stroke",function(){return "black";})
-                        .attr("fill",function(d,i){return  "rgb(" + (Math.floor((Math.random() * 255) + 1)) + "," +(Math.floor((Math.random() * 255) + 1))+"," +0+")";})
-
+                        // .attr("stroke",function(){return "black";})
+                        // .attr("fill",function(d,i){return  "rgb(" + (Math.floor((Math.random() * 255) + 1)) + "," +(Math.floor((Math.random() * 255) + 1))+"," +0+")";})
+                        // .attr("fill", function(d,i){ ; return d.properties.PI})
+                        .attr("class", function(d) { return "q"+Math.floor((Math.random() * 9) + 0); })
                 };
 
             };
