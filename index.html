@@ -13,20 +13,48 @@
     <script src="//maps.google.com/maps/api/js"></script>
     <script src="static/js/ng-map.min.js"></script>
     <script src="static/js/d3.js"></script>
+    <script src="static/js/d3.tip.v0.6.3.js"></script>
     <script src="static/js/jquery.min.js"></script> 
     <script src="static/js/ion.rangeSlider.min.js"></script> 
     <script src="app.js"></script>
     
     <title>Housing App</title>
     <style>    
-        #map {
-            width: 500px;
-            height: 500px;
-        }        
+        .d3-tip {
+          line-height: 1;
+          font-weight: bold;
+          padding: 12px;
+          background: rgba(0, 0, 0, 0.8);
+          color: #fff;
+          border-radius: 2px;
+        }
+
+        /* Creates a small triangle extender for the tooltip */
+        .d3-tip:after {
+          box-sizing: border-box;
+          display: inline;
+          font-size: 10px;
+          width: 100%;
+          line-height: 1;
+          color: rgba(0, 0, 0, 0.8);
+          content: "\25BC";
+          position: absolute;
+          text-align: center;
+        }
+
+        /* Style northward tooltips differently */
+        .d3-tip.n:after {
+          margin: -1px 0 0 0;
+          top: 100%;
+          left: 0;
+        }
+    
         .SvgOverlay {
             position: relative;
-            width: 500px;
-            height: 500px;           
+            margin-top: 0px;
+            width: 100%;
+            
+            height:500px;           
         }
         .SvgOverlay svg {
             position: absolute;
@@ -40,16 +68,7 @@
 
             fill-opacity: .6;
         }
-        .q0 { fill:rgb(255,255,204); }
-        .q1 { fill:rgb(255,237,160); }
-        .q2 { fill:rgb(254,217,118); }
-        .q3 { fill:rgb(254,178,76); }
-        .q4 { fill:rgb(253,141,60); }
-        .q5 { fill:rgb(252,78,42); }
-        .q6 { fill:rgb(227,26,28); }
-        .q7 { fill:rgb(189,0,38); }
-        .q8 { fill:rgb(150,0,38); }
-        .q9 { fill:rgb(128,0,38); }
+       
     </style>
     
 </head>
@@ -70,7 +89,10 @@
         </div>
     </header>
     <div id="map-wrap"> 
-	   <map style="display:block;height:500px" center="{{location}}" zoom="12"  scrollwheel="false"></map>
+	   <map style="display:block;height:500px" center="{{location}}" zoom="12"  scrollwheel="false" draggable="false"  ></map>
+    </div>
+    <div id="panel">
+    <div id="hot_map"></div>
     </div>
     <script>
         $("#range").ionRangeSlider({
