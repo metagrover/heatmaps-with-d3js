@@ -5,6 +5,67 @@ header{
 	padding: 10px;
 }
 
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+.SvgOverlay {
+    position: relative;
+    margin-top: 0px;
+    width: 100%;
+    
+    height:500px;           
+}
+.SvgOverlay svg {
+    position: absolute;
+    top: -4000px;
+    left: -4000px;
+    width: 8000px;
+    height: 8000px;        
+}
+.SvgOverlay path {
+    fill-opacity: .6;
+}
+
+.q0 { fill:rgb(255,255,204); }
+.q1 { fill:rgb(255,237,160); }
+.q2 { fill:rgb(254,217,118); }
+.q3 { fill:rgb(254,178,76); }
+.q4 { fill:rgb(253,141,60); }
+.q5 { fill:rgb(252,78,42); }
+.q6 { fill:rgb(227,26,28); }
+.q7 { fill:rgb(189,0,38); }
+.q8 { fill:rgb(150,0,38); }
+.q9 { fill:rgb(128,0,38); }
+
+#map_wrap{background-color:#fff !important}
+
+#map_wrap div div div div div div img{visibility:hidden}
+
+
 .range-wrapper{
 	display: inline-block;
 	width: 400px;
@@ -24,7 +85,6 @@ select{
 	outline: none;
 	text-decoration: none;
 	border: none;
-	/*border: 1px solid #ccc;*/
 	font-family: "muliregular";
 	font-size: 15px;
 	padding: 2px 6px;
@@ -36,4 +96,19 @@ select{
 select option{
 	background: #fff;
 	padding: 10px !important;
+}
+
+.panelClass{
+	width: 200px;
+	height: auto;
+	padding: 10px 15px;
+	background: #fff;
+	border: 1px solid #eee;
+	position: relative;
+	top: -440px;
+	right: -40px;
+	left: calc(100% - 250px);
+	-webkit-transition: all .3s ease;
+	transition: all .3s ease;
+
 }
