@@ -122,6 +122,7 @@ app.controller('baseController', ['$scope', function ($scope) {
             var svg = layer.append("svg");
             var disableListener = false;																																																																																																																																			
             var adminDivisions = svg.append("g").attr("class", "AdminDivisions");
+            
 
 
 
@@ -154,8 +155,26 @@ app.controller('baseController', ['$scope', function ($scope) {
                     .attr("fill", function(d,i){pricesArray.push(d.properties.Prices); return color(d.properties.Prices);})      
                     .on("mouseover",tip.show)
                     .on("mouseout", tip.hide)
-                    .on("click", function(d,i){d3.select(".panelClass").remove(); d3.select("#panel").append("div").attr("class","panelClass").text(d.properties.name)  })
-					.call(tip);
+                     .on("click", function(d,i){d3.select(".panelClass").remove(); 
+                    							d3.select(".close").remove();
+                    							var panel =  d3.select("#panel")
+                    												
+                    												panel.append("div").attr("class","panelClass")
+                    												.text(d.properties.name)
+                    												.append("div")
+                    												.attr("class","sad")
+                    													.text(d.properties.Prices);  
+
+                    							panel.append("div").attr("class","close")
+                    							.on("click", function(){
+                    								// if(d3.select(this)[0][0])
+
+                    								d3.select(".panelClass").remove();                    						
+                    								d3.select(".close").remove();    
+                    								})                							
+                    												})
+                    .call(tip);
+
 
                 
                    $scope.map.set("disableDoubleClickZoom", true);
