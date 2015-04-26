@@ -14,7 +14,32 @@ app.controller('baseController', ['$scope', function ($scope) {
             var svg = layer.append("svg");
             var disableListener = false;																																																																																																																																			
             var adminDivisions = svg.append("g").attr("class", "AdminDivisions");
+            var legendRectSize = 18;
+			var legendSpacing = 4;
 
+            var legend = d3.select("#legendId").append("svg").selectAll('.legend')
+							  .data(color.range())
+							  .enter()
+							  .append('g')
+							  .attr('class', 'legend')
+							    .attr('transform', function(d, i) {
+							    var height = legendRectSize + legendSpacing;
+							    var offset =  height * color.domain().length / 2;
+							    var horz = -2 * legendRectSize;
+							    var vert = i * height - offset;
+							    return 'translate(' + horz + ',' + vert + ')';
+							  });
+			legend.append('rect')
+				  .attr('width', legendRectSize)
+				  .attr('height', legendRectSize)
+				  .style('fill', function(d,i){console.log(d);return d;})
+				  // .style('stroke', "rgb(0,0,255)")
+		
+
+			legend.append('text')
+				  .attr('x', legendRectSize + legendSpacing)
+				  .attr('y', legendRectSize - legendSpacing)
+				  .text(function(d) { return d; });
 
 
             overlay.draw = function () {
@@ -45,7 +70,15 @@ app.controller('baseController', ['$scope', function ($scope) {
                     .attr("fill", function(d,i){pricesArray.push(d.properties.Prices); return color(d.properties.Prices);})
                     .on("mouseover",tip.show)
                     .on("mouseout", tip.hide)
-                    .on("click", function(d,i){d3.select(".panelClass").remove(); d3.select("#panel").append("div").attr("class","panelClass").text(d.properties.name)  })
+                    .on("click", function(d,i){d3.select(".panelClass").remove(); 
+                    							d3.select(".close").remove();
+                    							var panel =  d3.select("#panel")
+                    												
+                    												panel.append("div").attr("class","panelClass")
+                    												.text(d.properties.name+" "+d.properties.Prices);  
+
+                    							panel.append("div").attr("class","close")
+                    												})
                     .call(tip);
 
            

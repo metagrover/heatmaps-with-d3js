@@ -5,6 +5,14 @@ header{
 	padding: 10px;
 }
 
+ .legend {
+    font-size: 12px;
+  }
+  
+  rect {
+    stroke-width: 2;
+  }
+
 .d3-tip {
   line-height: 1;
   font-weight: bold;
