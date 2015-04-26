@@ -10,7 +10,6 @@ app.controller('baseController', ['$scope', function ($scope) {
             overlay.onAdd = function () {
 
             var layer = d3.select(this.getPanes().overlayMouseTarget).append("div").attr("class", "SvgOverlay");
-            console.log(layer)
             var svg = layer.append("svg");
             var disableListener = false;																																																																																																																																			
             var adminDivisions = svg.append("g").attr("class", "AdminDivisions");
@@ -32,8 +31,8 @@ app.controller('baseController', ['$scope', function ($scope) {
 			legend.append('rect')
 				  .attr('width', legendRectSize)
 				  .attr('height', legendRectSize)
-				  .attr('fill', function(d,i){console.log(d);return d;})
-				 	.attr('stroke', function(d,i){console.log(d);return d;})
+				  .attr('fill', function(d,i){return d;})
+				 	.attr('stroke', function(d,i){return d;})
 
 		
 
@@ -98,13 +97,13 @@ app.controller('baseController', ['$scope', function ($scope) {
                                                                         .text(function(){
                                                                             var x =Math.floor((Math.random()*10)+2);
                                                                             if(x<4){
-                                                                                return "Low";
+                                                                                return "High";
                                                                             }
                                                                             else if(x<8){
                                                                                 return "Moderate";
                                                                             }
                                                                             else{
-                                                                                return "High";
+                                                                                return "Low";
                                                                             }
                                                                         }); 
 
@@ -143,7 +142,6 @@ app.controller('baseController', ['$scope', function ($scope) {
             overlay.onAdd = function () {
 
             var layer = d3.select(this.getPanes().overlayMouseTarget).append("div").attr("class", "SvgOverlay");
-            console.log(layer)
             var svg = layer.append("svg");
             var disableListener = false;																																																																																																																																			
             var adminDivisions = svg.append("g").attr("class", "AdminDivisions");
@@ -207,13 +205,13 @@ app.controller('baseController', ['$scope', function ($scope) {
                                                                         .text(function(){
                                                                             var x = Math.floor((Math.random()*10)+2);
                                                                             if(x<4){
-                                                                                return "Low";
+                                                                                return "High";
                                                                             }
                                                                             else if(x<8){
                                                                                 return "Moderate";
                                                                             }
                                                                             else{
-                                                                                return "High";
+                                                                                return "Low";
                                                                             }
                                                                         });    
 
