@@ -25,15 +25,16 @@ app.controller('baseController', ['$scope', function ($scope) {
 							    .attr('transform', function(d, i) {
 							    var height = legendRectSize + legendSpacing;
 							    var offset =  height * color.domain().length / 2;
-							    var horz = -2 * legendRectSize;
+							    var horz = 8 * legendRectSize;
 							    var vert = i * height - offset;
 							    return 'translate(' + horz + ',' + vert + ')';
 							  });
 			legend.append('rect')
 				  .attr('width', legendRectSize)
 				  .attr('height', legendRectSize)
-				  .style('fill', function(d,i){console.log(d);return d;})
-				  // .style('stroke', "rgb(0,0,255)")
+				  .attr('fill', function(d,i){console.log(d);return d;})
+				 	.attr('stroke', function(d,i){console.log(d);return d;})
+
 		
 
 			legend.append('text')
@@ -66,7 +67,7 @@ app.controller('baseController', ['$scope', function ($scope) {
                     .enter()
                     .append("g")
                 	.append("svg:path")
-                    .attr("d", path)	
+                    .attr("d", path)
                     .attr("fill", function(d,i){pricesArray.push(d.properties.Prices); return color(d.properties.Prices);})
                     .on("mouseover",tip.show)
                     .on("mouseout", tip.hide)
@@ -78,6 +79,12 @@ app.controller('baseController', ['$scope', function ($scope) {
                     												.text(d.properties.name+" "+d.properties.Prices);  
 
                     							panel.append("div").attr("class","close")
+                    							.on("click", function(){
+                    								console.log(d3.select(this));
+                    								if(d3.select(this)){
+                    									console.log("inside u")
+                    								}
+                    							})
                     												})
                     .call(tip);
 
