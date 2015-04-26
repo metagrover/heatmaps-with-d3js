@@ -26,10 +26,8 @@ app.controller('baseController', ['$scope', function ($scope) {
 							  .attr('class', 'legend')
 							    .attr('transform', function(d, i) {
 							    var height = legendRectSize + legendSpacing;
-							    var offset =  height * color.domain().length / 2;
-							    var horz = 8 * legendRectSize;
-							    var vert = i * height - offset;
-							    return 'translate(' + horz + ',' + vert + ')';
+							    var vert = i * height;
+							    return 'translate(' + 0 + ',' + vert + ')';
 							  });
 			legend.append('rect')
 				  .attr('width', legendRectSize)
@@ -80,8 +78,35 @@ app.controller('baseController', ['$scope', function ($scope) {
                     												panel.append("div").attr("class","panelClass")
                     												.text(d.properties.name)
                     												.append("div")
-                    												.attr("class","sad")
-                    													.text(d.properties.Prices);  
+                    												.attr("class","price")
+                    													.text("Rs " + d.properties.Prices + " per sqft")
+                                                                    .append("div")
+                                                                    .attr("class","c-rate")
+                                                                        .text(function(){
+                                                                            if(d.properties.Prices%10 > 7){
+                                                                                return "High";
+                                                                            }
+                                                                            else if(d.properties.Prices%10 > 4){
+                                                                                return "Moderate";
+                                                                            }
+                                                                            else{
+                                                                                return "Low";
+                                                                            }
+                                                                        })
+                                                                    .append("div")
+                                                                    .attr("class","t-rate")
+                                                                        .text(function(){
+                                                                            var x =Math.floor((Math.random()*10)+2);
+                                                                            if(x<4){
+                                                                                return "Low";
+                                                                            }
+                                                                            else if(x<8){
+                                                                                return "Moderate";
+                                                                            }
+                                                                            else{
+                                                                                return "High";
+                                                                            }
+                                                                        }); 
 
                     							panel.append("div").attr("class","close")
                     							.on("click", function(){
@@ -162,8 +187,35 @@ app.controller('baseController', ['$scope', function ($scope) {
                     												panel.append("div").attr("class","panelClass")
                     												.text(d.properties.name)
                     												.append("div")
-                    												.attr("class","sad")
-                    													.text(d.properties.Prices);  
+                    												.attr("class","price")
+                    													.text("Rs " + d.properties.Prices + " per sqft")
+                                                                    .append("div")
+                                                                    .attr("class","c-rate")
+                                                                        .text(function(){
+                                                                            if(d.properties.Prices%10 > 7){
+                                                                                return "High";
+                                                                            }
+                                                                            else if(d.properties.Prices%10 > 4){
+                                                                                return "Moderate";
+                                                                            }
+                                                                            else{
+                                                                                return "Low";
+                                                                            }
+                                                                        })
+                                                                    .append("div")
+                                                                    .attr("class","t-rate")
+                                                                        .text(function(){
+                                                                            var x = Math.floor((Math.random()*10)+2);
+                                                                            if(x<4){
+                                                                                return "Low";
+                                                                            }
+                                                                            else if(x<8){
+                                                                                return "Moderate";
+                                                                            }
+                                                                            else{
+                                                                                return "High";
+                                                                            }
+                                                                        });    
 
                     							panel.append("div").attr("class","close")
                     							.on("click", function(){
