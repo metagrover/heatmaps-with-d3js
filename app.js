@@ -16,6 +16,8 @@ app.controller('baseController', ['$scope', function ($scope) {
             var adminDivisions = svg.append("g").attr("class", "AdminDivisions");
             var legendRectSize = 18;
 			var legendSpacing = 4;
+			var price_range = ["2000","2300","2600","2700","3000","3300","3800"]
+
 
             var legend = d3.select("#legendId").append("svg").selectAll('.legend')
 							  .data(color.range())
@@ -40,7 +42,7 @@ app.controller('baseController', ['$scope', function ($scope) {
 			legend.append('text')
 				  .attr('x', legendRectSize + legendSpacing)
 				  .attr('y', legendRectSize - legendSpacing)
-				  .text(function(d) { return d; });
+				  .text(function(d,i) { return price_range[i]; });
 
 
             overlay.draw = function () {
@@ -80,11 +82,11 @@ app.controller('baseController', ['$scope', function ($scope) {
 
                     							panel.append("div").attr("class","close")
                     							.on("click", function(){
-                    								console.log(d3.select(this));
-                    								if(d3.select(this)){
-                    									console.log("inside u")
-                    								}
-                    							})
+                    								// if(d3.select(this)[0][0])
+
+                    								d3.select(".panelClass").remove();                    						
+                    								d3.select(".close").remove();    
+                    								})                							
                     												})
                     .call(tip);
 
