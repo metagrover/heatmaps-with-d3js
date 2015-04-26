@@ -106,17 +106,37 @@ select option{
 	padding: 10px !important;
 }
 
-.panelClass{
+#panel{
 	width: 200px;
 	height: auto;
-	padding: 10px 15px;
-	background: #fff;
-	border: 1px solid #eee;
+	background: none;
 	position: relative;
 	top: -440px;
 	right: -40px;
 	left: calc(100% - 250px);
 	-webkit-transition: all .3s ease;
 	transition: all .3s ease;
+}
 
+.panelClass{
+	width: calc(100% - 40px);
+	float: left;
+	padding: 10px 15px;
+	background: #fff;
+}
+
+#panel .close{
+	width: 40px;
+	height: 40px;
+	background: #ccc;
+	float: right;
+	opacity: 1;
+	text-align: center;
+	font-size: "monserratregular";
+}
+
+#panel .close:before{
+	content: "×";
+	position: relative;
+	top: 9px;
 }
