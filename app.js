@@ -78,7 +78,10 @@ app.controller('baseController', ['$scope', function ($scope) {
                     							var panel =  d3.select("#panel")
                     												
                     												panel.append("div").attr("class","panelClass")
-                    												.text(d.properties.name+" "+d.properties.Prices);  
+                    												.text(d.properties.name)
+                    												.append("div")
+                    												.attr("class","sad")
+                    													.text(d.properties.Prices);  
 
                     							panel.append("div").attr("class","close")
                     							.on("click", function(){
