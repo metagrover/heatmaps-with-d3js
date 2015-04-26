@@ -26,11 +26,9 @@ app.controller('baseController', ['$scope', function ($scope) {
 				  .attr('class', 'd3-tip')
 				  .offset([+20, -20])
 				  .html(function(d) {
-				  	console.log(d);
-				    return "<strong>Price:</strong> <span style='color:	'>" + d.properties.Prices + "</span>";
+				    return "<span style='color:yellow'>"+d.properties.name + "</span><br>"+"<strong>Price:</strong> <span style='color:red'>" + (d.properties.Prices - (Math.floor(Math.random()*600)+200))+" - "+d.properties.Prices +" </span> per sqft";
 				  })
 
-                // Turn the overlay projection into a d3 projection
                 var googleMapProjection = function (coordinates) {
                     var googleCoordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
                     var pixelCoordinates = overlayProjection.fromLatLngToDivPixel(googleCoordinates);
@@ -42,61 +40,19 @@ app.controller('baseController', ['$scope', function ($scope) {
                     .data(geoJson.features)
                     .enter()
                     .append("g")
-                    
-
-                    
-                    
-
-                   var t = first // update existing paths
                 	.append("svg:path")
                     .attr("d", path)	
                     .attr("fill", function(d,i){pricesArray.push(d.properties.Prices); return color(d.properties.Prices);})
-                    // .attr("x", function(d,i){return i})
-                    // .attr("y", function(d,i){return i})
-
                     .on("mouseover",tip.show)
                     .on("mouseout", tip.hide)
+                    .on("click", function(d,i){d3.select(".panelClass").remove(); d3.select("#panel").append("div").attr("class","panelClass").text(d.properties.name)  })
+                    .call(tip);
 
-                   t.call(tip);
-
-                   // var q = first.append("title")
-                   // 				// .on("mouseover",function(){console.log(d3.mouse(this)); d3.selectAll('path').style("fill","blue"); })
-                   // 				// .append("rect")
-                   // 				// .style("visibility","hidden")
-                   // 				// .attr("x",0)
-                   // 				// .attr("y",0)
-                   // 				// .attr("width",80)
-                   // 				// .attr("height", 40)
-
-                   // 				// .on("onmousedown",function(d){console.log(d3.mouse(this),d); return tip.show })
-                   // 				.text(function(d,i){return d.properties.Prices;})
-                   // 				// .on("dblclick",function(){console.log(d3.mouse(this)); })
-                   // 				.append("g")
-                   // 				// .on("dblclick",function(){console.log(d3.mouse(this)); })
-                   // 				.text("te")
+           
 
                    $scope.map.set("disableDoubleClickZoom", true);
 
-                   				// .text(function(d,i){return d.properties.Price;})
-                   // d3.select("#map-wrap").append("svg:text")
-                   //  .text("tejehs")
-                   //  .attr("z-index",99999)
-
-
-                    // d3.select("#hot_map")
-                    // 	.append("svg")
-                    // 	.attr("height",600)
-                    	
-//                     google.maps.event.addListener(path, 'click', function() {
-
-//                     	console.log(index);
-//                     	console.log(oldPoint);
- 
-// });
-
-
-                 //        d3.select("#panel")
-                	// .text(Math.max.apply(null, pricesArray));
+      
             };
            
         };
@@ -131,13 +87,12 @@ app.controller('baseController', ['$scope', function ($scope) {
 
 				var tip = d3.tip()
 				  .attr('class', 'd3-tip')
-				  // .offset([-10, 0])
+				  .offset([+20, -20])
 				  .html(function(d) {
-				  	console.log(d);
-				    return "<strong>Price:</strong> <span style='color:red'>" + d.properties.Prices + "</span>";
+				    return "<span style='color:yellow'>"+d.properties.name + "</span><br>"+"<strong>Price:</strong> <span style='color:red'>" + (d.properties.Prices - (Math.floor(Math.random()*600)+200))+" - "+d.properties.Prices +" </span> per sqft";
 				  })
 
-                // Turn the overlay projection into a d3 projection
+
                 var googleMapProjection = function (coordinates) {
                     var googleCoordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
                     var pixelCoordinates = overlayProjection.fromLatLngToDivPixel(googleCoordinates);
@@ -145,65 +100,22 @@ app.controller('baseController', ['$scope', function ($scope) {
                 }
 
                 path = d3.geo.path().projection(googleMapProjection);
-                var first = adminDivisions.selectAll("path")
+             	adminDivisions.selectAll("path")
                     .data(geoJson.features)
                     .enter()
                     .append("g")
-                    
-
-                    
-                    
-
-                   var t = first // update existing paths
                 	.append("svg:path")
                     .attr("d", path)	
-                    .attr("fill", function(d,i){pricesArray.push(d.properties.Prices); return color(d.properties.Prices);})
-                    // .attr("x", function(d,i){return i})
-                    // .attr("y", function(d,i){return i})
-
+                    .attr("fill", function(d,i){pricesArray.push(d.properties.Prices); return color(d.properties.Prices);})      
                     .on("mouseover",tip.show)
                     .on("mouseout", tip.hide)
+                    .on("click", function(d,i){d3.select(".panelClass").remove(); d3.select("#panel").append("div").attr("class","panelClass").text(d.properties.name)  })
+					.call(tip);
 
-                   t.call(tip);
-
-                   // var q = first.append("title")
-                   // 				// .on("mouseover",function(){console.log(d3.mouse(this)); d3.selectAll('path').style("fill","blue"); })
-                   // 				// .append("rect")
-                   // 				// .style("visibility","hidden")
-                   // 				// .attr("x",0)
-                   // 				// .attr("y",0)
-                   // 				// .attr("width",80)
-                   // 				// .attr("height", 40)
-
-                   // 				// .on("onmousedown",function(d){console.log(d3.mouse(this),d); return tip.show })
-                   // 				.text(function(d,i){return d.properties.Prices;})
-                   // 				// .on("dblclick",function(){console.log(d3.mouse(this)); })
-                   // 				.append("g")
-                   // 				// .on("dblclick",function(){console.log(d3.mouse(this)); })
-                   // 				.text("te")
-
+                
                    $scope.map.set("disableDoubleClickZoom", true);
 
-                   				// .text(function(d,i){return d.properties.Price;})
-                   // d3.select("#map-wrap").append("svg:text")
-                   //  .text("tejehs")
-                   //  .attr("z-index",99999)
-
-
-                    // d3.select("#hot_map")
-                    // 	.append("svg")
-                    // 	.attr("height",600)
-                    	
-//                     google.maps.event.addListener(path, 'click', function() {
-
-//                     	console.log(index);
-//                     	console.log(oldPoint);
- 
-// });
-
-
-                 //        d3.select("#panel")
-                	// .text(Math.max.apply(null, pricesArray));
+            
             };
 
             $scope.map.set('styles', [
@@ -222,7 +134,7 @@ app.controller('baseController', ['$scope', function ($scope) {
 						  ]
 						},
 						  {
-						  featureType: 'water',
+						  featureType: 'water	',
 						  elementType: 'geometry',
 						  stylers: [
 						    { visibility: 'off' }
