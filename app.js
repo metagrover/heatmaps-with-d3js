@@ -42,7 +42,7 @@ app.controller('baseController', ['$scope', function ($scope) {
 			legend.append('text')
 				  .attr('x', legendRectSize + legendSpacing)
 				  .attr('y', legendRectSize - legendSpacing)
-				  .text(function(d,i) { return price_range[i]; });
+				  .text(function(d,i) { return "Rs " + price_range[i] + " per sqft"; });
 
 
             overlay.draw = function () {
