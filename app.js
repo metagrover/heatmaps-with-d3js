@@ -2,7 +2,7 @@ var app = angular.module('housing', ['ui.router', 'ngMap']);
     
 app.controller('baseController', ['$scope', function ($scope) {
 
-    d3.json("bangalore_pincode2015.json",function(geoJson){
+    d3.json("data/bangalore_pincode2015.json",function(geoJson){
             var color = d3.scale.quantize()
         			 	.domain([2000,2300,2600,2700,3000,3300,3800])
         			 	.range([ "rgb(254,217,118)","rgb(254,178,76)","rgb(253,141,60)","rgb(252,78,42)","rgb(227,26,28)","rgb(189,0,38)","rgb(128,0,38)"]);
@@ -130,10 +130,7 @@ app.controller('baseController', ['$scope', function ($scope) {
 
     $scope.update = function(data){
          d3.select('.SvgOverlay').remove();
-         d3.json("bangalore_pincode"+data+".json",function(geoJson){
-            // var color = d3.scale.quantize()
-        			 // 	.domain([2000,2300,2600,3000,3300,3600,4000,4500,5000])
-        			 // 	.range([ "rgb(255,255,204)","rgb(255,237,160)","rgb(254,217,118)","rgb(254,178,76)","rgb(253,141,60)","rgb(252,78,42)","rgb(227,26,28)","rgb(189,0,38)","rgb(128,0,38)"]);
+         d3.json("data/bangalore_pincode"+data+".json",function(geoJson){
             var color = d3.scale.quantize()
                     	.domain([2000,2300,2600,2700,3000,3300,3800])
         			 	.range([ "rgb(254,217,118)","rgb(254,178,76)","rgb(253,141,60)","rgb(252,78,42)","rgb(227,26,28)","rgb(189,0,38)","rgb(128,0,38)"]);
